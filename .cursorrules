@@ -1,0 +1,18 @@
+{
+  "tabSize": 2,
+  "insertSpaces": true,
+  "formatOnSave": true,
+  "formatOnPaste": true,
+  "trimTrailingWhitespace": true,
+  "insertFinalNewline": true,
+  "rules": {
+    "backend/**/*.py": {
+      "tabSize": 4,
+      "pythonFormatter": "black"
+    },
+    "frontend/**/*.{ts,html,scss}": {
+      "tabSize": 2,
+      "formatOnSave": true
+    }
+  }
+} 

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: lti_ats_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: lti_admin
+      POSTGRES_PASSWORD: lti_password_secure
+      POSTGRES_DB: lti_ats_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    networks:
+      - lti_ats_network
+
+networks:
+  lti_ats_network:
+    driver: bridge 
