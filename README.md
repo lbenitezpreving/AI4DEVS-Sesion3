@@ -78,14 +78,23 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-4. Ejecutar migraciones:
+4. Instalar dependencias adicionales necesarias:
+```bash
+pip install psycopg2 email-validator alembic
+```
+
+5. Ejecutar migraciones:
 ```bash
 alembic upgrade head
 ```
 
-5. Iniciar el servidor:
+6. Iniciar el servidor:
 ```bash
+# Usando el script run.py
 python run.py
+
+# O directamente con uvicorn (recomendado)
+uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 El backend estará disponible en `http://localhost:8000`
@@ -103,10 +112,37 @@ npm install
 
 3. Iniciar el servidor de desarrollo:
 ```bash
+# Usando el script npm
+npm run start
+
+# O directamente con ng
 ng serve
 ```
 
 El frontend estará disponible en `http://localhost:4200`
+
+## Arranque rápido (para desarrollo)
+
+Para iniciar todos los componentes rápidamente, sigue estos pasos en terminales separadas:
+
+### Terminal 1: Base de datos
+```bash
+cd database
+docker-compose up -d
+```
+
+### Terminal 2: Backend
+```bash
+cd backend
+.\venv\Scripts\activate  # En Windows
+uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### Terminal 3: Frontend
+```bash
+cd frontend
+npm run start
+```
 
 ## Documentación
 - API Backend: `http://localhost:8000/docs` (Swagger UI)
